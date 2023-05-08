@@ -86,7 +86,6 @@ app.post('/save',async (req,res)=>{
 })
 
 app.post('/valid',async (req,res)=>{
-  console.log(req.body);
   const id = req.body.id;
   var o_id = new mongo.ObjectId(id);
   
@@ -94,7 +93,7 @@ app.post('/valid',async (req,res)=>{
   .then((doc) => {
     const epochLocal = Math.floor(new Date().getTime() / 1000);
     const epochUser = Math.floor(doc.createdAt);
-    const diff = (epochLocal - epochUser);
+    const diff = (epochLocal - epochUser)/60;
     console.table(diff)
     if(diff > 60){
       res.status(500).send()
